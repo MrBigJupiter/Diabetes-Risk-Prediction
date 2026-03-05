@@ -4,7 +4,7 @@ This notebook presents a binary classification analysis using the diabetes datas
 
 ## Dataset
 
-The dataset is loaded using `load_diabetes(scaled=False)` and consists of multiple numerical features describing patient health indicators, along with a continuous target variable representing disease progression.
+The dataset is loaded using `load_diabetes()` and consists of multiple numerical features describing patient health indicators, along with a continuous target variable representing disease progression.
 
 ## Data Exploration
 
@@ -31,3 +31,14 @@ Visualizations are used to:
 - Analyze the distribution of the target variable
 - Observe class separation under different thresholds
 - Evaluate model performance and prediction behavior
+
+## Models
+
+**Scenario 1** uses two models compared against each other — Logistic Regression 
+on the mean centered dataset with L2 regularization, and Random Forest on the 
+original unscaled dataset. The balanced 54/46 class split made both models viable 
+without resampling.
+
+**Scenario 2** uses Random Forest with SMOTE resampling to address the severe 
+85/15 class imbalance at the 250 threshold. SMOTE is applied to the training 
+set only to avoid data leakage.
