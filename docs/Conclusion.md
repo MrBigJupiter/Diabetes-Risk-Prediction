@@ -23,10 +23,9 @@ The EDA drove every downstream decision in the project. Key findings:
 
 - **Strongest predictors** — BMI (r=0.59) and S5 log triglycerides (r=0.57)
   are the most predictive features for disease progression. S3 HDL cholesterol
-  (r=-0.39) is the strongest protective feature — higher HDL consistently
-  associates with lower progression.
+  (r=-0.39) is also one  as higher HDL consistently associates with lower progression.
 
-- **Residual multicollinearity** — S5 retains a VIF of 77.4 after feature
+- **Residual multicollinearity** — S5 retains a VIF of 77.4 after manual feature
   reduction due to its overlap with the BMI/BP cluster. This was accepted
   given S5's strong predictive value, with tree-based models selected for
   Scenario 2 to handle this naturally.
@@ -84,10 +83,8 @@ real-world performance.
 Both models plateau around 70-85% accuracy depending on the scenario. This
 is not a modeling failure but a reflection of the dataset's information
 limits. Diabetes progression is heavily influenced by factors not captured
-in the dataset — genetics, lifestyle, diet, medication history and
-longitudinal trends. These unmeasured variables create an unexplained
-variance floor that no amount of model tuning can overcome with the
-current feature set.
+in the dataset based on medical sources mentioned in the EDA — genetics, lifestyle, diet, medication history and longitudinal trends. These unmeasured variables create an unexplained
+variance floor. 
 
 ---
 
@@ -99,14 +96,10 @@ current feature set.
   ceiling.
 - **Increase dataset size** — at 1500+ patients with an enriched feature
   set, XGBoost or gradient boosting would be justified. At 5000+ patients,
-  neural network approaches become viable.
+  neural network approaches become reasonable.
 - **Threshold sensitivity analysis** — exploring intermediate thresholds
   between 150 and 250 could reveal a more clinically meaningful risk
   stratification than the two binary splits used here.
 - **Exploring additional models** — XGBoost and LightGBM are natural next
   candidates as the dataset grows, offering stronger handling of
-  multicollinearity and class imbalance than the current models. For Scenario 1
-  specifically, Support Vector Machine with an RBF kernel could be worth
-  comparing given the small dataset size and broadly linear feature relationships.
-  A systematic comparison using nested cross-validation would provide a more
-  rigorous model selection framework than the single holdout evaluation used here.
+  multicollinearity and class imbalance than the current models.
